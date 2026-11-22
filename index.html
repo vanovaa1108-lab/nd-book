@@ -12,24 +12,24 @@
   <header>
     <h1>N&amp;D Bookstore</h1>
     <p>Nggak ada orang yang nggak suka baca, cari bukumu</p>
-    <a href="keranjang.html">Keranjang (0)</a>
+    <a href="keranjang.html">Keranjang (<span id="jumlah-keranjang">0</span>)</a>
   </header>
 
   <!-- KOLOM CARI -->
   <section>
-    <input type="search" placeholder="Cari judul buku...">
+    <input type="search" id="kolom-cari" placeholder="Cari judul buku...">
   </section>
 
   <!-- TOMBOL KATEGORI -->
   <nav>
-    <button>Semua</button>
-    <button>Novel</button>
-    <button>Pelajaran</button>
-    <button>Komik</button>
-    <button>Teknologi</button>
-    <button>Sejarah</button>
-    <button>Motivasi</button>
-  </nav>
+  <button class="aktif" data-kategori="semua">Semua</button>
+  <button data-kategori="novel">Novel</button>
+  <button data-kategori="pelajaran">Pelajaran</button>
+  <button data-kategori="komik">Komik</button>
+  <button data-kategori="teknologi">Teknologi</button>
+  <button data-kategori="sejarah">Sejarah</button>
+  <button data-kategori="motivasi">Motivasi</button>
+</nav>
 
   <!-- TEMPAT BUKU DIPAJANG -->
   <main>
@@ -109,6 +109,6 @@
   <footer>
     <p>&copy; 2026 N&amp;D Bookstore</p>
   </footer>
-
+<script src= "js/app.js"></script>
 </body>
 </html>
