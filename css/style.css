@@ -52,6 +52,24 @@ article h3 { margin: 0 0 6px; font-size: 16px; }
 article p { margin: 4px 0; }
 article button {
   margin-top: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+article button:hover {
+  background-color: #1f5675;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(42, 111, 151, 0.3);
+}
+article button:active {
+  transform: translateY(0);
+}
+article p:last-of-type {
+  margin-bottom: 12px;
 }
 .sembunyi { display: none; }
 main.halaman-keranjang { display: block; }
