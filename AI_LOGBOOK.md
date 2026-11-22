@@ -1,4 +1,4 @@
-# AI_LOGBOOK - N&D Book
+# AI_LOGBOOK - N&D Bookstore
 
 Tim: NOVA WAHYUNI dan DIVA YULIANA
 
