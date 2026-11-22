@@ -45,9 +45,14 @@ article {
   padding: 12px;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
 }
 article h3 { margin: 0 0 6px; font-size: 16px; }
 article p { margin: 4px 0; }
+article button {
+  margin-top: auto;
+}
 .sembunyi { display: none; }
 main.halaman-keranjang { display: block; }
 
