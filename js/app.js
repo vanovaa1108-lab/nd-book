@@ -58,6 +58,17 @@ function tampilkanBuku() {
   pesanKosong.classList.toggle("sembunyi", jumlahTampil > 0);
 }
 
+kolomCari.addEventListener("input", tampilkanBuku);
+
+tombolKategori.forEach(function (tombol) {
+  tombol.addEventListener("click", function () {
+    kategoriAktif = tombol.dataset.kategori;
+    tombolKategori.forEach(function (t) { t.classList.remove("aktif"); });
+    tombol.classList.add("aktif");
+    tampilkanBuku();
+  });
+});
+
 // ===== Bagian 3: Tombol "Tambah ke Keranjang" =====
 semuaKartu.forEach(function (kartu) {
   const tombol = kartu.querySelector("button");
