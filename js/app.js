@@ -3,6 +3,9 @@ const semuaKartu = document.querySelectorAll("article");
 const kolomCari = document.getElementById("kolom-cari");
 const tombolKategori = document.querySelectorAll("nav button");
 const pesanKosong = document.getElementById("pesan-kosong");
+const tombolRekomendasi = document.querySelectorAll(".btn-rek");
+const teksRekomendasi = document.getElementById("teks-rekomendasi");
+let modeRekomendasi = "semua";
 let kategoriAktif = "semua";
 
 // Keranjang diambil dari localStorage (kalau kosong, mulai dari daftar kosong)
@@ -45,10 +48,37 @@ function tampilkanBuku() {
 
   semuaKartu.forEach(function (kartu) {
     const judul = kartu.querySelector("h3").textContent.toLowerCase();
-    const cocokKategori = kategoriAktif === "semua" || kartu.dataset.kategori === kategoriAktif;
-    const cocokJudul = judul.includes(kataKunci);
-    const tampil = cocokKategori && cocokJudul;
+    const kategoriKartu = (kartu.dataset.kategori || "").toLowerCase();
 
+    const cocokKategori = kategoriAktif === "semua" || kategoriKartu === kategoriAktif;
+    const cocokJudul = judul.includes(kataKunci);
+
+    let cocokRek = true;
+    if (modeRekomendasi === "coding") {
+      cocokRek =
+        judul.includes("coding") ||
+        judul.includes("html") ||
+        judul.includes("kecerdasan") ||
+        kategoriKartu === "teknologi";
+    } else if (modeRekomendasi === "fiksi") {
+      cocokRek =
+        judul.includes("langit") ||
+        judul.includes("rahasia") ||
+        judul.includes("detektif") ||
+        kategoriKartu === "novel" ||
+        kategoriKartu === "komik";
+    } else if (modeRekomendasi === "wawasan") {
+      cocokRek =
+        judul.includes("kerajaan") ||
+        judul.includes("proklamasi") ||
+        judul.includes("matematika") ||
+        judul.includes("langkah") ||
+        kategoriKartu === "sejarah" ||
+        kategoriKartu === "pelajaran" ||
+        kategoriKartu === "motivasi";
+    }
+
+    const tampil = cocokKategori && cocokJudul && cocokRek;
     kartu.classList.toggle("sembunyi", !tampil);
     if (tampil) {
       jumlahTampil++;
@@ -57,17 +87,6 @@ function tampilkanBuku() {
 
   pesanKosong.classList.toggle("sembunyi", jumlahTampil > 0);
 }
-
-kolomCari.addEventListener("input", tampilkanBuku);
-
-tombolKategori.forEach(function (tombol) {
-  tombol.addEventListener("click", function () {
-    kategoriAktif = tombol.dataset.kategori;
-    tombolKategori.forEach(function (t) { t.classList.remove("aktif"); });
-    tombol.classList.add("aktif");
-    tampilkanBuku();
-  });
-});
 
 // ===== Bagian 3: Tombol "Tambah ke Keranjang" =====
 semuaKartu.forEach(function (kartu) {
@@ -82,5 +101,26 @@ semuaKartu.forEach(function (kartu) {
     bunyiKlik();
     animasi(tombol, "pop");
     animasi(document.getElementById("jumlah-keranjang"), "pop");
+  });
+});
+
+// ===== Bagian 4: Rekomendasi buku =====
+const deskripsiRekomendasi = {
+  semua: "",
+  coding: "Rekomendasi untuk mulai belajar coding, web dasar, dan kecerdasan artifisial.",
+  fiksi: "Rekomendasi bacaan cerita, misteri, dan komik yang seru.",
+  wawasan: "Rekomendasi untuk memperluas wawasan sejarah, pelajaran, dan motivasi diri."
+};
+
+tombolRekomendasi.forEach(function (tombol) {
+  tombol.addEventListener("click", function () {
+    modeRekomendasi = tombol.dataset.rek;
+    tombolRekomendasi.forEach(function (t) { t.classList.remove("aktif"); });
+    tombol.classList.add("aktif");
+
+    const pesan = deskripsiRekomendasi[modeRekomendasi] || "";
+    teksRekomendasi.textContent = pesan;
+    teksRekomendasi.classList.toggle("sembunyi", pesan === "");
+    tampilkanBuku();
   });
 });
