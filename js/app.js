@@ -74,22 +74,3 @@ semuaKartu.forEach(function (kartu) {
     animasi(document.getElementById("jumlah-keranjang"), "pop");
   });
 });
-// ===== Bagian 4: Sampul buku otomatis =====
-const warnaSampul = {
-  novel: "#2a6f97",
-  pelajaran: "#2d6a4f",
-  komik: "#b5651d",
-  teknologi: "#5a189a",
-  sejarah: "#8a4f7d",
-  motivasi: "#c1121f"
-};
-
-semuaKartu.forEach(function (kartu) {
-  const sampul = document.createElement("div");
-  sampul.className = "sampul";
-  sampul.textContent = kartu.querySelector("h3").textContent;
-  sampul.style.backgroundColor = warnaSampul[kartu.dataset.kategori] || "#555";
-  kartu.prepend(sampul);
-});
-
-updateJumlah();
