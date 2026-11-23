@@ -158,21 +158,6 @@ main.halaman-keranjang {
   display: block;
 }
 
-.sampul {
-  height: 155px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 12px;
-  color: white;
-  font-weight: 700;
-  font-size: 14px;
-  text-align: center;
-  box-shadow: inset 0 -12px 24px rgba(0, 0, 0, 0.12);
-}
-
 footer {
   text-align: center;
   padding: 24px 16px;
@@ -207,10 +192,11 @@ footer { padding: 28px 16px; }
 .sampul-gambar {
   display: block;
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: 170px;
+  object-fit: contain;
   border-radius: 6px;
   margin-bottom: 8px;
+  background-color: #f4f6f9;
 }
 
 /* ===== Tombol sejajar di dasar kartu ===== */
