@@ -224,3 +224,8 @@ article p:last-of-type {
 article button {
   margin-top: auto;
 }
+
+/* ===== Judul sama tinggi, supaya penulis dan harga sejajar ===== */
+article h3 {
+  min-height: 4.8em;
+}
