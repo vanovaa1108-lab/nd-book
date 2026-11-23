@@ -212,3 +212,15 @@ footer { padding: 28px 16px; }
   border-radius: 6px;
   margin-bottom: 8px;
 }
+
+/* ===== Tombol sejajar di dasar kartu ===== */
+article {
+  display: flex;
+  flex-direction: column;
+}
+article p:last-of-type {
+  margin-bottom: 12px;
+}
+article button {
+  margin-top: auto;
+}
