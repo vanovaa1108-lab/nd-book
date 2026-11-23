@@ -268,3 +268,26 @@ article h3 {
   font-size: 13px;
   color: #4b5563;
 }
+
+/* ===== Warna tombol hijau ===== */
+button {
+  background-color: #2d6a4f;
+  color: white;
+}
+
+article button:hover {
+  background-color: #1b4332;
+  box-shadow: 0 6px 14px rgba(27, 67, 50, 0.28);
+}
+
+nav button.aktif {
+  background-color: #2d6a4f;
+  color: white;
+  box-shadow: 0 3px 10px rgba(45, 106, 79, 0.25);
+}
+
+.btn-rek.aktif {
+  background-color: #2d6a4f;
+  color: white;
+  border-color: #2d6a4f;
+}
