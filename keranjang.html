@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keranjang - N&amp;D Bookstore</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- BAGIAN ATAS -->
+  <header>
+    <h1>N&amp;D Bookstore</h1>
+    <p>Daftar buku yang sudah kamu pilih di keranjang</p>
+    <a href="index.html">&larr; Kembali ke Katalog</a>
+  </header>
+
+  <!-- ISI KERANJANG -->
+  <main class="halaman-keranjang">
+    <h2>Keranjang Belanja</h2>
+    <p id="status-keranjang">Memuat isi keranjang...</p>
+    <ul id="daftar-keranjang"></ul>
+
+    <div id="ringkasan-keranjang" class="sembunyi">
+      <p id="total-harga">Total: Rp 0</p>
+      <button type="button" id="btn-kosongkan">Kosongkan Keranjang</button>
+    </div>
+  </main>
+
+  <!-- BAGIAN BAWAH -->
+  <footer>
+    <p>&copy; 2026 N&amp;D Bookstore</p>
+  </footer>
+
+  <script>
+    const daftarKeranjang = document.getElementById("daftar-keranjang");
+    const statusKeranjang = document.getElementById("status-keranjang");
+    const ringkasanKeranjang = document.getElementById("ringkasan-keranjang");
+    const totalHargaEl = document.getElementById("total-harga");
+    const btnKosongkan = document.getElementById("btn-kosongkan");
+
+    let itemKeranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    function formatRupiah(angka) {
+      return "Rp " + Number(angka || 0).toLocaleString("id-ID");
+    }
+
+    function renderKeranjang() {
+      daftarKeranjang.innerHTML = "";
+
+      if (itemKeranjang.length === 0) {
+        statusKeranjang.textContent = "Keranjangmu masih kosong. Yuk pilih buku dulu di halaman katalog!";
+        ringkasanKeranjang.classList.add("sembunyi");
+        return;
+      }
+
+      statusKeranjang.textContent = "Jumlah buku di keranjang: " + itemKeranjang.length;
+      ringkasanKeranjang.classList.remove("sembunyi");
+
+      let total = 0;
+
+      itemKeranjang.forEach(function (item, index) {
+        const harga = Number(item.harga) || 0;
+        total += harga;
+
+        const li = document.createElement("li");
+        li.className = "item-keranjang";
+
+        const info = document.createElement("span");
+        info.textContent = item.judul + " — " + formatRupiah(harga);
+
+        const tombolHapus = document.createElement("button");
+        tombolHapus.type = "button";
+        tombolHapus.textContent = "Hapus";
+        tombolHapus.addEventListener("click", function () {
+          itemKeranjang.splice(index, 1);
+          localStorage.setItem("keranjang", JSON.stringify(itemKeranjang));
+          renderKeranjang();
+        });
+
+        li.appendChild(info);
+        li.appendChild(tombolHapus);
+        daftarKeranjang.appendChild(li);
+      });
+
+      totalHargaEl.textContent = "Total: " + formatRupiah(total);
+    }
+
+    btnKosongkan.addEventListener("click", function () {
+      itemKeranjang = [];
+      localStorage.removeItem("keranjang");
+      renderKeranjang();
+    });
+
+    renderKeranjang();
+  </script>
+
+</body>
+</html>
