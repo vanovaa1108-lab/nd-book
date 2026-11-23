@@ -12,8 +12,14 @@ let kategoriAktif = "semua";
 let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
 
 function updateJumlah() {
-  document.getElementById("jumlah-keranjang").textContent = keranjang.length;
+  const elJumlah = document.getElementById("jumlah-keranjang");
+  if (elJumlah) {
+    elJumlah.textContent = keranjang.length;
+  }
 }
+
+updateJumlah();
+
 // Suara "ting" dibuat langsung oleh browser, jadi tidak perlu file suara
 let konteksSuara;
 function bunyiKlik() {
@@ -41,9 +47,9 @@ function animasi(elemen, namaKelas) {
   }, 400);
 }
 
-// ===== Bagian 2: Filter kategori dan pencarian =====
+// ===== Bagian 2: Filter kategori, pencarian, dan rekomendasi =====
 function tampilkanBuku() {
-  const kataKunci = kolomCari.value.toLowerCase().trim();
+  const kataKunci = kolomCari ? kolomCari.value.toLowerCase().trim() : "";
   let jumlahTampil = 0;
 
   semuaKartu.forEach(function (kartu) {
@@ -85,12 +91,30 @@ function tampilkanBuku() {
     }
   });
 
-  pesanKosong.classList.toggle("sembunyi", jumlahTampil > 0);
+  if (pesanKosong) {
+    pesanKosong.classList.toggle("sembunyi", jumlahTampil > 0);
+  }
 }
+
+if (kolomCari) {
+  kolomCari.addEventListener("input", tampilkanBuku);
+}
+
+tombolKategori.forEach(function (tombol) {
+  tombol.addEventListener("click", function () {
+    kategoriAktif = (tombol.dataset.kategori || "semua").toLowerCase();
+    tombolKategori.forEach(function (t) {
+      t.classList.remove("aktif");
+    });
+    tombol.classList.add("aktif");
+    tampilkanBuku();
+  });
+});
 
 // ===== Bagian 3: Tombol "Tambah ke Keranjang" =====
 semuaKartu.forEach(function (kartu) {
   const tombol = kartu.querySelector("button");
+  if (!tombol) return;
   tombol.addEventListener("click", function () {
     const judul = kartu.querySelector("h3").textContent;
     const teksHarga = kartu.querySelectorAll("p")[1].textContent;
@@ -100,7 +124,10 @@ semuaKartu.forEach(function (kartu) {
     updateJumlah();
     bunyiKlik();
     animasi(tombol, "pop");
-    animasi(document.getElementById("jumlah-keranjang"), "pop");
+    const elJumlah = document.getElementById("jumlah-keranjang");
+    if (elJumlah) {
+      animasi(elJumlah, "pop");
+    }
   });
 });
 
@@ -115,12 +142,16 @@ const deskripsiRekomendasi = {
 tombolRekomendasi.forEach(function (tombol) {
   tombol.addEventListener("click", function () {
     modeRekomendasi = tombol.dataset.rek;
-    tombolRekomendasi.forEach(function (t) { t.classList.remove("aktif"); });
+    tombolRekomendasi.forEach(function (t) {
+      t.classList.remove("aktif");
+    });
     tombol.classList.add("aktif");
 
     const pesan = deskripsiRekomendasi[modeRekomendasi] || "";
-    teksRekomendasi.textContent = pesan;
-    teksRekomendasi.classList.toggle("sembunyi", pesan === "");
+    if (teksRekomendasi) {
+      teksRekomendasi.textContent = pesan;
+      teksRekomendasi.classList.toggle("sembunyi", pesan === "");
+    }
     tampilkanBuku();
   });
 });
