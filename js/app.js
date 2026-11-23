@@ -2,6 +2,7 @@
 const semuaKartu = document.querySelectorAll("article");
 const kolomCari = document.getElementById("kolom-cari");
 const tombolKategori = document.querySelectorAll("nav button");
+const pesanKosong = document.getElementById("pesan-kosong");
 let kategoriAktif = "semua";
 
 // Keranjang diambil dari localStorage (kalau kosong, mulai dari daftar kosong)
@@ -39,25 +40,23 @@ function animasi(elemen, namaKelas) {
 
 // ===== Bagian 2: Filter kategori dan pencarian =====
 function tampilkanBuku() {
-  const kataKunci = kolomCari.value.toLowerCase();
+  const kataKunci = kolomCari.value.toLowerCase().trim();
+  let jumlahTampil = 0;
+
   semuaKartu.forEach(function (kartu) {
     const judul = kartu.querySelector("h3").textContent.toLowerCase();
     const cocokKategori = kategoriAktif === "semua" || kartu.dataset.kategori === kategoriAktif;
     const cocokJudul = judul.includes(kataKunci);
-    kartu.classList.toggle("sembunyi", !(cocokKategori && cocokJudul));
+    const tampil = cocokKategori && cocokJudul;
+
+    kartu.classList.toggle("sembunyi", !tampil);
+    if (tampil) {
+      jumlahTampil++;
+    }
   });
+
+  pesanKosong.classList.toggle("sembunyi", jumlahTampil > 0);
 }
-
-kolomCari.addEventListener("input", tampilkanBuku);
-
-tombolKategori.forEach(function (tombol) {
-  tombol.addEventListener("click", function () {
-    kategoriAktif = tombol.dataset.kategori;
-    tombolKategori.forEach(function (t) { t.classList.remove("aktif"); });
-    tombol.classList.add("aktif");
-    tampilkanBuku();
-  });
-});
 
 // ===== Bagian 3: Tombol "Tambah ke Keranjang" =====
 semuaKartu.forEach(function (kartu) {
