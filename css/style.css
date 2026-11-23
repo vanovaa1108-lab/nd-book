@@ -7,11 +7,11 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, #2a6f97, #1d4e6b);
+  background: linear-gradient(135deg, #1b4332, #2d6a4f);
   color: white;
   padding: 24px 16px;
   text-align: center;
-  box-shadow: 0 4px 14px rgba(29, 78, 107, 0.15);
+  box-shadow: 0 4px 14px rgba(27, 67, 50, 0.18);
 }
 
 header a {
