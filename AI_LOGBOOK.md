@@ -8,7 +8,7 @@ Alat AI: Claude & Gemini
 | Prompt | Jawaban AI (ringkas) | Validasi & Modifikasi Mandiri |
 |---|---|---|
 | Minta ide website toko buku online untuk pemula | Memberi nama proyek, struktur folder, dan daftar fitur | Memilih nama N&D Book / N&D Bookstore, membatalkan ide install HP/offline, dan memilih fitur pesan saat hasil tidak ditemukan, rekomendasi buku, serta halaman `keranjang.html` (dikerjakan mandiri). |
-| Menyesuaikan ide dengan tema AI kehidupan sehari-hari & referensi video toko online | Menyarankan rekomendasi buku berbasis pilihan kebutuhan/minat sederhana serta alur katalog & pemesanan seperti referensi video | Menyesuaikan ide agar mudah dipahami siswa kelas XI dan sesuai katalog buku yang disiapkan (dikerjakan mandiri). |
+| Menyesuaikan ide dengan tema AI kehidupan sehari-hari & referensi video toko online | Menyarankan rekomendasi buku berbasis pilihan kebutuhan/minat sederhana serta alur katalog & pemesanan seperti referensi video | Menyesuaikan ide agar mudah dipahami siswa kelas XI dan sesuai katalog buku yang disiapkan (dikerjakan mandiri) dan mengedit sampul buku secara mandiri di canva. |
 
 ## Tahap 2: Kerangka Kode
 
