@@ -368,3 +368,51 @@ nav button.aktif {
   color: #052e16;
   transform: translateY(-1px);
 }
+
+/* ===== Ciri Khas Tombol Keranjang di Header ===== */
+.tombol-keranjang-khas {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 14px 8px 16px;
+  background-color: #ffffff;
+  color: #081c15;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: 2px solid #74c69d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.tombol-keranjang-khas:hover {
+  background-color: #25D366;
+  border-color: #25D366;
+  color: #052e16;
+  transform: translateY(-2px);
+}
+
+.ikon-keranjang {
+  flex-shrink: 0;
+}
+
+.badge-keranjang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background-color: #1b4332;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  border-radius: 999px;
+}
+
+.tombol-keranjang-khas:hover .badge-keranjang {
+  background-color: #052e16;
+  color: #ffffff;
+}
