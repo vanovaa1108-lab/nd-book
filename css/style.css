@@ -345,3 +345,26 @@ nav button.aktif {
   background-color: #128C7E;
   color: white;
 }
+
+/* ===== Tombol Navigasi di Header ===== */
+.nav-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-header-btn:hover {
+  background-color: #25D366;
+  border-color: #25D366;
+  color: #052e16;
+  transform: translateY(-1px);
+}
