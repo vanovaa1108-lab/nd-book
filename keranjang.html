@@ -23,6 +23,12 @@
 
     <div id="ringkasan-keranjang" class="sembunyi">
       <p id="total-harga">Total: Rp 0</p>
+      <button type="button" id="btn-wa">
+        <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
+          <path fill="currentColor" d="M16 3C8.82 3 3 8.82 3 16c0 2.3.6 4.54 1.74 6.52L3 29l6.67-1.71A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm7.54 18.42c-.32.9-1.85 1.72-2.56 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.57-6.59-5.83-.19-.26-1.57-2.09-1.57-3.99 0-1.9 1-2.83 1.35-3.22.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.88.67.32.78 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.38.65-.19.23-.4.51-.57.68-.19.19-.39.4-.17.78.22.38.98 1.62 2.11 2.62 1.45 1.29 2.67 1.69 3.05 1.88.38.19.6.16.82-.1.22-.26.95-1.1 1.2-1.48.26-.38.51-.32.86-.19.35.13 2.22 1.05 2.6 1.24.38.19.64.28.73.44.1.16.1.92-.22 1.82z"/>
+        </svg>
+        <span>Beli Produk</span>
+      </button>
       <button type="button" id="btn-kosongkan">Kosongkan Keranjang</button>
     </div>
   </main>
@@ -38,6 +44,8 @@
     const ringkasanKeranjang = document.getElementById("ringkasan-keranjang");
     const totalHargaEl = document.getElementById("total-harga");
     const btnKosongkan = document.getElementById("btn-kosongkan");
+    const btnWa = document.getElementById("btn-wa");
+    const nomorWaToko = "6281234567890"; // Ganti dengan nomor WA kamu (format: 628...)
 
     let itemKeranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
 
@@ -90,6 +98,25 @@
       itemKeranjang = [];
       localStorage.removeItem("keranjang");
       renderKeranjang();
+    });
+
+    btnWa.addEventListener("click", function () {
+      if (itemKeranjang.length === 0) return;
+
+      let total = 0;
+      const daftarPesanan = itemKeranjang.map(function (item, idx) {
+        const harga = Number(item.harga) || 0;
+        total += harga;
+        return (idx + 1) + ". " + item.judul + " - " + formatRupiah(harga);
+      });
+
+      const teksPesan =
+        "Halo N&D Bookstore, saya mau pesan produk berikut:\n" +
+        daftarPesanan.join("\n") +
+        "\n\nTotal: " + formatRupiah(total);
+
+      const urlWa = "https://api.whatsapp.com/send?phone=" + nomorWaToko + "&text=" + encodeURIComponent(teksPesan);
+      window.open(urlWa, "_blank");
     });
 
     renderKeranjang();
