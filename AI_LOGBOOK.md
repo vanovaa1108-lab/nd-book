@@ -1,6 +1,7 @@
 # AI_LOGBOOK - N&D Bookstore
 
 Tim: NOVA WAHYUNI dan DIVA YULIANA 
+
 Alat AI: Claude & Gemini
 
 ## Tahap 1: Eksplorasi Ide
