@@ -325,3 +325,19 @@ nav button.aktif {
   color: #1f2937;
   margin: 0 0 10px;
 }
+
+#btn-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #25D366;
+  color: #052e16;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+#btn-wa:hover {
+  background-color: #128C7E;
+  color: white;
+}
